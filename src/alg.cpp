@@ -36,6 +36,7 @@ int countPairs3(int *arr, int len, int value) {
       int mid = ii + (j - ii) / 2;
       if (arr[mid] == per) {
         k++;
+        break;
        } else if (arr[mid] > per) {
          j = mid;
        } else {
