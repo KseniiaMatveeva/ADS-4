@@ -15,8 +15,8 @@ void bubbleSort(int *arr, int len) {
 int countPairs1(int *arr, int len, int value) {
   bubbleSort(arr, len);
   int k = 0;
-  for (int i = 0; i < len - 1; i++) {
-    for (int j = i + 1; j < len; j++) {
+  for (int i = 0; i < len; i++) {
+    for (int j = (i + 1); j < len; j++) {
       if (arr[i] + arr[j] == value) {
         k++;
       }
@@ -28,11 +28,11 @@ int countPairs1(int *arr, int len, int value) {
 int countPairs2(int *arr, int len, int value) {
   bubbleSort(arr, len);
   int k = 0;
-  while (arr[len - 1] > value) {
+  /*while (arr[len - 1] > value) {
     len--;
-  }
-  for (int i = 0; i < len - 1; i++) {
-    for (int j = len; j > i; j--) {
+  }*/
+  for (int i = 0; i < len; i++) {
+    for (int j = len - 1; j > i; j--) {
       if (arr[i] + arr[j] == value) {
         k++;
       }
