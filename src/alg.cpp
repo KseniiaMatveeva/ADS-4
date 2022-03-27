@@ -52,7 +52,7 @@ int cbinsearch(int *arr, int size, int value, int ii) {
           count++;
           mid--;
         }
-      while (arr[mid + 1] == value && mid < len) {
+      while (arr[mid + 1] == value && mid < size) {
           count++;
           mid++;
         }
