@@ -1,5 +1,6 @@
 // Copyright 2021 NNTU-CS
 int countPairs1(int *arr, int len, int value) {
+  bubbleSort(arr, len);
   int k = 0;
   int i = 0;
   while (i < len - 1) {
@@ -13,6 +14,7 @@ int countPairs1(int *arr, int len, int value) {
   return k;
 }
 int countPairs2(int *arr, int len, int value) {
+  bubbleSort(arr, len);
   int k = 0;
   int i = 0;
   while (arr[len - 1] > value) {
@@ -40,14 +42,10 @@ void bubbleSort(int *arr, int len) {
     }
   }
 }
-int cbinsearch(int *arr, int size, int value) {
+int cbinsearch(int *arr, int size, int value, int ii) {
   int count = 0;
-  int i = 0, j = size - 1;
+  int i = ii, j = size - 1;
   while (i < j) {
-    if (arr[i] == value && arr[j] == value) {
-      count += j - i + 1;
-      return count;
-    }
     int mid = i + (j - i) / 2;
     if (arr[mid] == value) {
       count++;
@@ -72,7 +70,7 @@ int countPairs3(int *arr, int len, int value) {
   bubbleSort(arr, len);
   int k = 0;
   for (int i = 0; i < len; i++) {
-    k += cbinsearch(arr, len, value - arr[i]);
+    k += cbinsearch(arr, len, value - arr[i], i + 1);
   }
   return k;
 }
