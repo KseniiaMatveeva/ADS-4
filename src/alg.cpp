@@ -28,33 +28,51 @@ int countPairs2(int *arr, int len, int value) {
   }
   return k;
 }
-int countPairs3(int *arr, int len, int value) {
-  int k = 0;
-  int i = 0;
-  int j = len - 1;
-  while (i < len - 1) {
-    int per = value - arr[i];
-    int ii = i + 1;
-    while (ii < j) {
-      int mid = (ii + j) / 2;
-      if (arr[mid] == per) {
-        k++;
-        while (arr[mid - 1] == per) {
-          k++;
+void bubbleSort(int *arr, int len) {
+  int zam = 0;
+  for(int i = 0; i < len; i++){
+    for(int j = len - 1; j >= i + 1; j--){
+      if(arr[j] < arr[j - 1]){
+        zam = arr[j];
+        arr[j] = arr[j - 1];
+        arr[j - 1] = tmp;
+      }
+    }
+  }
+}
+int cbinsearch(int *arr, int size, int value) {
+  int count = 0;
+  int i = 0, j = size - 1;
+  while (i < j) {
+    if (arr[i] == value && arr[j] == value) {
+      count += j - i + 1;
+      return count;
+    }
+    int mid = i + (j - i) / 2;
+    if (arr[mid] == value) {
+      count++;
+      while (arr[mid - 1] == value) {
+          count++;
           mid--;
         }
-        while (arr[mid + 1] == per) {
-          k++;
+      while (arr[mid + 1] == value) {
+          count++;
           mid++;
         }
-        break;
-       } else if (arr[mid] > per) {
-         j = mid;
-       } else {
-         ii = mid + 1;
-       }
-    }
-    i++;
+      return count;
+     } else if (arr[mid] > value) {
+       j = mid;
+     } else {
+       i = mid + 1;
+      }
+  }
+  return count;
+}
+int countPairs3(int *arr, int len, int value) {
+  bubbleSort(arr, len);
+  int k = 0;
+  for ( int i = 0; i < len; i++) {
+    k += cbinsearch(arr, len, value - arr[i]);
   }
   return k;
 }
